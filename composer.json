@@ -1,0 +1,35 @@
+{
+    "name": "alparcas/omnipay-cielo",
+    "description": "Cielo API 3.0 driver for Omnipay",
+    "type": "library",
+    "keywords": [
+        "gateway",
+        "cielo",
+        "omnipay",
+        "payment"
+    ],
+    "homepage": "https://github.com/nerijunior/omnipay-cielo",
+    "require": {
+        "php": ">=5.4.0",
+        "omnipay/common": "~3.0",
+        "developercielo/api-3.0-php": "1.2",
+        "nerijunior/omnipay-cielo": "dev-master"
+    },
+    "require-dev": {
+        "omnipay/tests": "~3.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Neri J. Jakubowski Jr",
+            "email": "neri@nerijunior.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\Cielo\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
