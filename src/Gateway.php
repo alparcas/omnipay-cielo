@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Cielo;
+namespace Omnipay\Cielo30;
 
 use Omnipay\Common\AbstractGateway;
 
@@ -25,7 +25,7 @@ class Gateway extends AbstractGateway
      */
     public function getName()
     {
-        return 'cielo-3.0';
+        return 'Cielo30';
     }
 
     /**
@@ -79,6 +79,6 @@ class Gateway extends AbstractGateway
 
     public function authorize(array $parameters = [])
     {
-        return $this->createRequest(\Omnipay\Cielo\Requests\AuthorizeRequest::class, $parameters);
+        return $this->createRequest(\Omnipay\Cielo30\Requests\AuthorizeRequest::class, $parameters);
     }
 }

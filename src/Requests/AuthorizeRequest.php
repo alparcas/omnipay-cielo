@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Cielo\Requests;
+namespace Omnipay\Cielo30\Requests;
 
 class AuthorizeRequest extends AbstractRequest
 {
@@ -13,8 +13,6 @@ class AuthorizeRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('amount');
-
         $expiryMonth = str_pad($this->getCard()->getExpiryMonth(), 2, 0, STR_PAD_LEFT);
         $expiryYear = $this->getCard()->getExpiryYear();
 
@@ -35,11 +33,11 @@ class AuthorizeRequest extends AbstractRequest
                     "Holder"         => $this->getCard()->getName(),
                     "ExpirationDate" => $expiryMonth . '/' . $expiryYear,
                     "SecurityCode"   => $this->getCard()->getCvv(),
-                    "Brand"          => $this->getCard()->getBrand()
+                    "Brand"          => 'Visa', //$this->getCard()->getBrand()
                 ]
             ]
         ];
-
+        
         return $data;
     }
 

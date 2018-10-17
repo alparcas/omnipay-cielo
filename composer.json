@@ -27,7 +27,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Omnipay\\Cielo\\": "src/"
+            "Omnipay\\Cielo30\\": "src/"
         }
     },
     "minimum-stability": "dev",

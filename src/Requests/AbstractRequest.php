@@ -1,10 +1,8 @@
 <?php
 
-namespace Omnipay\Cielo\Requests;
+namespace Omnipay\Cielo30\Requests;
 
-use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
-
-abstract class AbstractRequest extends BaseAbstractRequest
+abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
     protected $requestsEndpoint = 'https://apisandbox.cieloecommerce.cielo.com.br';
     protected $queryEndpoint = 'https://apiquerysandbox.cieloecommerce.cielo.com.br/';
@@ -27,21 +25,24 @@ abstract class AbstractRequest extends BaseAbstractRequest
         $url = $this->getRequestUrl($data);
 
         $headers = [
-            'MerchantId' => $this->getMerchantId(),
-            'MerchantKey' => $this->getMerchantKey(),
+            'MerchantId'   => $this->getMerchantId(),
+            'MerchantKey'  => $this->getMerchantKey(),
             'Content-Type' => 'application/json'
         ];
 
-        $response = $this->httpClient->request(
+        $httpResponse = $this->httpClient->request(
             $method,
             $url,
             $headers,
             json_encode($data)
         );
 
-        $payload = $this->decode($response->getBody());
+        return $this->createResponse($httpResponse);
+    }
 
-        return $payload;
+    private function createResponse($response)
+    {
+        return $this->response = new Response($this, $response);
     }
 
     protected function setBaseEndpoint($value)
