@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "37bec96b5f0128df303c6c6a0c63fa2c",
+    "content-hash": "f76ceb5f9e66299c0fc3423af4b00ea5",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -349,55 +349,6 @@
                 "vo"
             ],
             "time": "2018-02-16T11:04:16+00:00"
-        },
-        {
-            "name": "nerijunior/omnipay-cielo",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nerijunior/omnipay-cielo.git",
-                "reference": "37140671fb2024053738c2b806d8f29e47fb7119"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nerijunior/omnipay-cielo/zipball/37140671fb2024053738c2b806d8f29e47fb7119",
-                "reference": "37140671fb2024053738c2b806d8f29e47fb7119",
-                "shasum": ""
-            },
-            "require": {
-                "developercielo/api-3.0-php": "1.2",
-                "nerijunior/omnipay-cielo": "dev-master",
-                "omnipay/common": "~3.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "omnipay/tests": "~3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Omnipay\\Cielo\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Neri J. Jakubowski Jr",
-                    "email": "neri@nerijunior.com"
-                }
-            ],
-            "description": "Cielo API 3.0 driver for Omnipay",
-            "homepage": "https://github.com/nerijunior/omnipay-cielo",
-            "keywords": [
-                "cielo",
-                "gateway",
-                "omnipay",
-                "payment"
-            ],
-            "time": "2018-08-23T00:35:59+00:00"
         },
         {
             "name": "omnipay/common",
@@ -2807,9 +2758,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "nerijunior/omnipay-cielo": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
