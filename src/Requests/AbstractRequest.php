@@ -4,31 +4,43 @@ namespace Omnipay\Cielo30\Requests;
 
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
-    protected $requestsEndpoint = 'https://apisandbox.cieloecommerce.cielo.com.br';
-    protected $queryEndpoint = 'https://apiquerysandbox.cieloecommerce.cielo.com.br/';
-    protected $baseEndpoint = 'requests';
-    protected $requestMethod = 'POST';
+    const SANDBOX_API_BASE_URL = 'https://apisandbox.cieloecommerce.cielo.com.br';
+    const SANDBOX_QUERY_BASE_URL = 'https://apiquerysandbox.cieloecommerce.cielo.com.br/';
+
+    const PRODUCTION_API_BASE_URL = 'https://api.cieloecommerce.cielo.com.br/';
+    const PRODUCTION_QUERY_BASE_URL = 'https://apiquery.cieloecommerce.cielo.com.br/';
+
+    const REQUEST_TYPE_QUERY = 'QUERY';
+    const REQUEST_TYPE_API = 'API';
+
+    protected $apiBaseUrl = self::SANDBOX_API_BASE_URL;
+    protected $queryBaseUrl = self::SANDBOX_QUERY_BASE_URL;
+
+    protected $endpoint = '/1/sales/{payment_id}';
+    protected $requestMethod = 'GET';
+    protected $requestType = self::REQUEST_TYPE_QUERY;
 
     public function initialize(array $parameters = array())
     {
         if (isset($parameters['environment']) && $parameters['environment'] === 'production') {
-            $this->requestsEndpoint = 'https://api.cieloecommerce.cielo.com.br/';
-            $this->queryEndpoint = 'https://apiquery.cieloecommerce.cielo.com.br/';
+            $this->apiBaseUrl = self::PRODUCTION_API_BASE_URL;
+            $this->queryBaseUrl = self::PRODUCTION_QUERY_BASE_URL;
         }
 
         return parent::initialize($parameters);
     }
 
+    /**
+     * @param mixed $data
+     *
+     * @return \Omnipay\Common\Message\ResponseInterface|void
+     * @throws \Exception
+     */
     public function sendData($data)
     {
         $method = $this->requestMethod;
-        $url = $this->getRequestUrl($data);
-
-        $headers = [
-            'MerchantId'   => $this->getMerchantId(),
-            'MerchantKey'  => $this->getMerchantKey(),
-            'Content-Type' => 'application/json'
-        ];
+        $url = $this->mountRequestUrl($data);
+        $headers = $this->mountHeaders();
 
         $httpResponse = $this->httpClient->request(
             $method,
@@ -40,31 +52,38 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->createResponse($httpResponse);
     }
 
-    private function createResponse($response)
+    /**
+     * @return array
+     */
+    private function mountHeaders(): array
     {
-        return $this->response = new Response($this, $response);
+        $headers = [
+            'MerchantId'      => $this->getMerchantId(),
+            'MerchantKey'     => $this->getMerchantKey(),
+            'Accept'          => 'application/json',
+            'Accept-Encoding' => 'gzip',
+            'Content-Type'    => 'application/json',
+            'RequestId'       => uniqid()
+        ];
+
+        return $headers;
     }
 
-    protected function setBaseEndpoint($value)
+    /**
+     * @param $response
+     *
+     * @throws \Exception
+     */
+    protected function createResponse($response)
     {
-        $this->baseEndpoint = $value;
+        throw new \Exception("Response not implemented!");
     }
 
-    private function getRequestUrl($data)
+    private function mountRequestUrl($data)
     {
-        $baseUrl = ($this->baseEndpoint === 'requests') ? $this->requestsEndpoint : $this->queryEndpoint;
+        $baseUrl = ($this->requestType === self::REQUEST_TYPE_QUERY) ? $this->queryBaseUrl : $this->apiBaseUrl;
 
-        return $baseUrl . '/1/sales/';
-    }
-
-    protected function setRequestMethod($value)
-    {
-        return $this->requestMethod = $value;
-    }
-
-    protected function decode($data)
-    {
-        return json_decode($data, true);
+        return $baseUrl . $this->endpoint;
     }
 
     public function getMerchantId()
@@ -95,5 +114,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function setEnvironment($value)
     {
         return $this->setParameter('environment', $value);
+    }
+
+    public function __get($name)
+    {
+        return $this->getParameter($name);
     }
 }

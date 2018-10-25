@@ -5,8 +5,6 @@ namespace Omnipay\Cielo30;
 use Omnipay\Common\AbstractGateway;
 
 /**
- * @method \Omnipay\Common\Message\RequestInterface completeAuthorize(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface capture(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface purchase(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface completePurchase(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface refund(array $options = array())
@@ -43,7 +41,7 @@ class Gateway extends AbstractGateway
         return [
             'environment'  => 'sandbox',
             'merchant_id'  => '',
-            'merchant_key' => ''
+            'merchant_key' => '',
         ];
     }
 
@@ -80,5 +78,15 @@ class Gateway extends AbstractGateway
     public function authorize(array $parameters = [])
     {
         return $this->createRequest(\Omnipay\Cielo30\Requests\AuthorizeRequest::class, $parameters);
+    }
+
+    public function capture(array $parameters = [])
+    {
+        return $this->createRequest(\Omnipay\Cielo30\Requests\CaptureRequest::class, $parameters);
+    }
+
+    public function completeAuthorize(array $parameters = [])
+    {
+        return $this->createRequest(\Omnipay\Cielo30\Requests\CompleteAuthorizeRequest::class, $parameters);
     }
 }

@@ -1,6 +1,7 @@
 {
     "name": "alparcas/omnipay-cielo",
     "description": "Cielo API 3.0 driver for Omnipay",
+    "version": "0.0.1",
     "type": "library",
     "keywords": [
         "gateway",
@@ -12,7 +13,7 @@
     "require": {
         "php": ">=7.1.0",
         "omnipay/common": "~3.0",
-        "developercielo/api-3.0-php": "1.2"
+        "developercielo/api-3.0-php": "1.2.1"
     },
     "require-dev": {
         "omnipay/tests": "~3.0"

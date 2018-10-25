@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f76ceb5f9e66299c0fc3423af4b00ea5",
+    "content-hash": "eb9428e368c7b399e418ac2942d40d8d",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -60,16 +60,16 @@
         },
         {
             "name": "developercielo/api-3.0-php",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DeveloperCielo/API-3.0-PHP.git",
-                "reference": "fad750820203a017ee5f24cae37f69e41dd5b481"
+                "reference": "40dd1a00e32d1709db8ba0fd385a744d28b1ab3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DeveloperCielo/API-3.0-PHP/zipball/fad750820203a017ee5f24cae37f69e41dd5b481",
-                "reference": "fad750820203a017ee5f24cae37f69e41dd5b481",
+                "url": "https://api.github.com/repos/DeveloperCielo/API-3.0-PHP/zipball/40dd1a00e32d1709db8ba0fd385a744d28b1ab3f",
+                "reference": "40dd1a00e32d1709db8ba0fd385a744d28b1ab3f",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
             ],
             "description": "Integração com a API 3.0 da Cielo",
             "homepage": "https://github.com/DeveloperCielo/API-3.0-PHP",
-            "time": "2017-12-20T13:25:23+00:00"
+            "time": "2018-01-11T18:03:53+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2762,7 +2762,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=7.1.0"
     },
     "platform-dev": []
 }
